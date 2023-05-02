@@ -9,13 +9,8 @@ material da Internet nem ter obtido código de terceiros.
 
 2. Membros do grupo e alocação de esforço
 
-Preencha as linhas abaixo com o nome e o e-mail dos integrantes do
-grupo.  Substitua marcadores `XX` pela contribuição de cada membro
-do grupo no desenvolvimento do trabalho (os valores devem somar
-100%).
-
   * Henrique Rotsen Santos Ferreira <henriquerotsensf@gmail.com> 50%
-  * Nome <email@domain> 50%
+  * Gabriel Castelo Branco <gcastelo.rocha@gmail.com> 50%
 
 3. Referências bibliográficas
 
