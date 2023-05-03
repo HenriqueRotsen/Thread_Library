@@ -10,7 +10,7 @@ material da Internet nem ter obtido código de terceiros.
 2. Membros do grupo e alocação de esforço
 
   * Henrique Rotsen Santos Ferreira <henriquerotsensf@gmail.com> 50%
-  * Gabriel Castelo Branco <gcastelo.rocha@gmail.com> 50%
+  * Gabriel Castelo Branco Rocha Alencar Pinto <gcastelo.rocha@gmail.com> 50%
 
 3. Referências bibliográficas
 
