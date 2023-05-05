@@ -21,11 +21,11 @@ dccthread_t *main_thread;
 dccthread_t *current;
 struct dlist *ready;
 
-
-bool comp(char *name1, char* name2){
-    
+int compare(const void *t1, const void *t2, void *userdata){
+	dccthread_t* x = (dccthread_t*) t1;
+	dccthread_t* y = (dccthread_t*) t2;
+	return(x!=y);
 }
-
 
 void schedule()
 {
@@ -38,18 +38,17 @@ void schedule()
             {
                 swapcontext(&manager.context, &current->context);
                 if(!current->yelded) {
-                    dlist_find_remove(ready, current, );
+                    dlist_find_remove(ready, current, compare, NULL);
                 }
             }
             else
             {
                 current->yelded = false;   
-            }
-            
+            }  
         }        
     }
 }
-// [p2(y), p1(y), p3, p4, p5]
+// [p1, p3, p4]
 
 void dccthread_init(void (*func)(int), int param)
 {

@@ -1,8 +1,0 @@
-{
-    "files.associations": {
-        "dccthread.h": "c",
-        "ucontext.h": "c",
-        "malloc.h": "c",
-        "stdlib.h": "c"
-    }
-}
