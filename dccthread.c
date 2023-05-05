@@ -62,7 +62,8 @@ void dccthread_yield(void)
 
 dccthread_t *dccthread_self(void)
 {
-
+    dccthread_t *curr_thread = dlist_get_index(ready, 0);
+    return curr_thread;
 }
 
 const char *dccthread_name(dccthread_t *tid)
