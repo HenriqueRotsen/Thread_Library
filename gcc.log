@@ -1,133 +1,100 @@
-dccthread.c:18:14: warning: ‘main’ is usually a function [-Wmain]
-   18 | dccthread_t *main;
-      |              ^~~~
-dccthread.c: In function ‘dccthread_init’:
-dccthread.c:42:1: warning: ‘noreturn’ function does return
-   42 | }
-      | ^
-dccthread.c: In function ‘dccthread_self’:
-dccthread.c:66:1: warning: control reaches end of non-void function [-Wreturn-type]
-   66 | }
-      | ^
-/usr/bin/ld: warning: alignment 1 of symbol `main' in /tmp/ccaGGeza.o is smaller than 8 in dccthread.o
-/usr/bin/ld: warning: alignment 1 of symbol `main' in /tmp/ccZW1lqP.o is smaller than 8 in dccthread.o
-/usr/bin/ld: warning: alignment 1 of symbol `main' in /tmp/cckmJ4Iz.o is smaller than 8 in dccthread.o
-/usr/bin/ld: warning: alignment 1 of symbol `main' in /tmp/cc2dP3jd.o is smaller than 8 in dccthread.o
-/usr/bin/ld: warning: alignment 1 of symbol `main' in /tmp/ccXGWVDU.o is smaller than 8 in dccthread.o
-/usr/bin/ld: warning: alignment 1 of symbol `main' in /tmp/ccPcFr1x.o is smaller than 8 in dccthread.o
-/usr/bin/ld: warning: alignment 1 of symbol `main' in /tmp/ccjBT1ci.o is smaller than 8 in dccthread.o
-/usr/bin/ld: /tmp/ccjBT1ci.o: in function `texit':
+/usr/bin/ld: /tmp/ccaumq9n.o: in function `texit':
 /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test7.c:9: undefined reference to `dccthread_exit'
-/usr/bin/ld: /tmp/ccjBT1ci.o: in function `test':
+/usr/bin/ld: /tmp/ccaumq9n.o: in function `test':
 /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test7.c:24: undefined reference to `dccthread_wait'
 /usr/bin/ld: /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test7.c:27: undefined reference to `dccthread_exit'
 collect2: error: ld returned 1 exit status
-/usr/bin/ld: warning: alignment 1 of symbol `main' in /tmp/ccIEwDHH.o is smaller than 8 in dccthread.o
-/usr/bin/ld: /tmp/ccIEwDHH.o: in function `texit':
+/usr/bin/ld: /tmp/cczhc3bO.o: in function `texit':
 /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test7.c:9: undefined reference to `dccthread_exit'
-/usr/bin/ld: /tmp/ccIEwDHH.o: in function `test':
+/usr/bin/ld: /tmp/cczhc3bO.o: in function `test':
 /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test7.c:24: undefined reference to `dccthread_wait'
 /usr/bin/ld: /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test7.c:27: undefined reference to `dccthread_exit'
 collect2: error: ld returned 1 exit status
-/usr/bin/ld: warning: alignment 1 of symbol `main' in /tmp/ccBwnbb9.o is smaller than 8 in dccthread.o
-/usr/bin/ld: /tmp/ccBwnbb9.o: in function `tyield':
+/usr/bin/ld: /tmp/ccrutuYg.o: in function `tyield':
 /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test8.c:11: undefined reference to `dccthread_exit'
-/usr/bin/ld: /tmp/ccBwnbb9.o: in function `test':
+/usr/bin/ld: /tmp/ccrutuYg.o: in function `test':
 /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test8.c:26: undefined reference to `dccthread_wait'
 /usr/bin/ld: /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test8.c:29: undefined reference to `dccthread_exit'
 collect2: error: ld returned 1 exit status
-/usr/bin/ld: warning: alignment 1 of symbol `main' in /tmp/ccZyXGkP.o is smaller than 8 in dccthread.o
-/usr/bin/ld: /tmp/ccZyXGkP.o: in function `tyield':
+/usr/bin/ld: /tmp/ccjCk4hI.o: in function `tyield':
 /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test8.c:11: undefined reference to `dccthread_exit'
-/usr/bin/ld: /tmp/ccZyXGkP.o: in function `test':
+/usr/bin/ld: /tmp/ccjCk4hI.o: in function `test':
 /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test8.c:26: undefined reference to `dccthread_wait'
 /usr/bin/ld: /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test8.c:29: undefined reference to `dccthread_exit'
 collect2: error: ld returned 1 exit status
-/usr/bin/ld: warning: alignment 1 of symbol `main' in /tmp/ccF6iFdk.o is smaller than 8 in dccthread.o
-/usr/bin/ld: /tmp/ccF6iFdk.o: in function `tloop':
+/usr/bin/ld: /tmp/cckhm3To.o: in function `tloop':
 /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test9.c:13: undefined reference to `dccthread_exit'
-/usr/bin/ld: /tmp/ccF6iFdk.o: in function `test':
+/usr/bin/ld: /tmp/cckhm3To.o: in function `test':
 /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test9.c:24: undefined reference to `dccthread_wait'
 /usr/bin/ld: /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test9.c:25: undefined reference to `dccthread_exit'
 collect2: error: ld returned 1 exit status
-/usr/bin/ld: warning: alignment 1 of symbol `main' in /tmp/ccARlWmJ.o is smaller than 8 in dccthread.o
-/usr/bin/ld: /tmp/ccARlWmJ.o: in function `tloop':
+/usr/bin/ld: /tmp/cchERShO.o: in function `tloop':
 /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test9.c:13: undefined reference to `dccthread_exit'
-/usr/bin/ld: /tmp/ccARlWmJ.o: in function `test':
+/usr/bin/ld: /tmp/cchERShO.o: in function `test':
 /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test9.c:24: undefined reference to `dccthread_wait'
 /usr/bin/ld: /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test9.c:25: undefined reference to `dccthread_exit'
 collect2: error: ld returned 1 exit status
-/usr/bin/ld: warning: alignment 1 of symbol `main' in /tmp/cc4z9X0d.o is smaller than 8 in dccthread.o
-/usr/bin/ld: /tmp/cc4z9X0d.o: in function `tloop':
+/usr/bin/ld: /tmp/ccnXztCj.o: in function `tloop':
 /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test9.c:13: undefined reference to `dccthread_exit'
-/usr/bin/ld: /tmp/cc4z9X0d.o: in function `test':
+/usr/bin/ld: /tmp/ccnXztCj.o: in function `test':
 /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test9.c:24: undefined reference to `dccthread_wait'
 /usr/bin/ld: /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test9.c:25: undefined reference to `dccthread_exit'
 collect2: error: ld returned 1 exit status
-/usr/bin/ld: warning: alignment 1 of symbol `main' in /tmp/ccDz8BNF.o is smaller than 8 in dccthread.o
-/usr/bin/ld: /tmp/ccDz8BNF.o: in function `tloop':
+/usr/bin/ld: /tmp/ccSMp8MI.o: in function `tloop':
 /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test9.c:13: undefined reference to `dccthread_exit'
-/usr/bin/ld: /tmp/ccDz8BNF.o: in function `test':
+/usr/bin/ld: /tmp/ccSMp8MI.o: in function `test':
 /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test9.c:24: undefined reference to `dccthread_wait'
 /usr/bin/ld: /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test9.c:25: undefined reference to `dccthread_exit'
 collect2: error: ld returned 1 exit status
-/usr/bin/ld: warning: alignment 1 of symbol `main' in /tmp/cctFdZv5.o is smaller than 8 in dccthread.o
-/usr/bin/ld: /tmp/cctFdZv5.o: in function `tloop':
+/usr/bin/ld: /tmp/ccCos8Gc.o: in function `tloop':
 /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test10.c:12: undefined reference to `dccthread_exit'
-/usr/bin/ld: /tmp/cctFdZv5.o: in function `test':
+/usr/bin/ld: /tmp/ccCos8Gc.o: in function `test':
 /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test10.c:22: undefined reference to `dccthread_wait'
 /usr/bin/ld: /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test10.c:23: undefined reference to `dccthread_exit'
 collect2: error: ld returned 1 exit status
-/usr/bin/ld: warning: alignment 1 of symbol `main' in /tmp/ccHmUA5D.o is smaller than 8 in dccthread.o
-/usr/bin/ld: /tmp/ccHmUA5D.o: in function `tloop':
+/usr/bin/ld: /tmp/ccdHy74F.o: in function `tloop':
 /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test10.c:12: undefined reference to `dccthread_exit'
-/usr/bin/ld: /tmp/ccHmUA5D.o: in function `test':
+/usr/bin/ld: /tmp/ccdHy74F.o: in function `test':
 /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test10.c:22: undefined reference to `dccthread_wait'
 /usr/bin/ld: /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test10.c:23: undefined reference to `dccthread_exit'
 collect2: error: ld returned 1 exit status
-/usr/bin/ld: warning: alignment 1 of symbol `main' in /tmp/cchkPrP4.o is smaller than 8 in dccthread.o
-/usr/bin/ld: /tmp/cchkPrP4.o: in function `tloop':
+/usr/bin/ld: /tmp/ccE8db76.o: in function `tloop':
 /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test10.c:12: undefined reference to `dccthread_exit'
-/usr/bin/ld: /tmp/cchkPrP4.o: in function `test':
+/usr/bin/ld: /tmp/ccE8db76.o: in function `test':
 /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test10.c:22: undefined reference to `dccthread_wait'
 /usr/bin/ld: /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test10.c:23: undefined reference to `dccthread_exit'
 collect2: error: ld returned 1 exit status
-/usr/bin/ld: warning: alignment 1 of symbol `main' in /tmp/cccwuGwz.o is smaller than 8 in dccthread.o
-/usr/bin/ld: /tmp/cccwuGwz.o: in function `tloop':
+/usr/bin/ld: /tmp/ccBhSvwx.o: in function `tloop':
 /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test10.c:12: undefined reference to `dccthread_exit'
-/usr/bin/ld: /tmp/cccwuGwz.o: in function `test':
+/usr/bin/ld: /tmp/ccBhSvwx.o: in function `test':
 /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test10.c:22: undefined reference to `dccthread_wait'
 /usr/bin/ld: /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test10.c:23: undefined reference to `dccthread_exit'
 collect2: error: ld returned 1 exit status
-/usr/bin/ld: warning: alignment 1 of symbol `main' in /tmp/ccl5ZtE1.o is smaller than 8 in dccthread.o
-/usr/bin/ld: /tmp/ccl5ZtE1.o: in function `tsleep':
+/usr/bin/ld: /tmp/ccvQNws2.o: in function `tsleep':
 /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test11.c:11: undefined reference to `dccthread_sleep'
 /usr/bin/ld: /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test11.c:13: undefined reference to `dccthread_exit'
-/usr/bin/ld: /tmp/ccl5ZtE1.o: in function `test':
+/usr/bin/ld: /tmp/ccvQNws2.o: in function `test':
 /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test11.c:26: undefined reference to `dccthread_wait'
 /usr/bin/ld: /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test11.c:29: undefined reference to `dccthread_exit'
 collect2: error: ld returned 1 exit status
-/usr/bin/ld: warning: alignment 1 of symbol `main' in /tmp/ccQcWk3w.o is smaller than 8 in dccthread.o
-/usr/bin/ld: /tmp/ccQcWk3w.o: in function `tsleep':
+/usr/bin/ld: /tmp/ccmc5SYq.o: in function `tsleep':
 /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test11.c:11: undefined reference to `dccthread_sleep'
 /usr/bin/ld: /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test11.c:13: undefined reference to `dccthread_exit'
-/usr/bin/ld: /tmp/ccQcWk3w.o: in function `test':
+/usr/bin/ld: /tmp/ccmc5SYq.o: in function `test':
 /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test11.c:26: undefined reference to `dccthread_wait'
 /usr/bin/ld: /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test11.c:29: undefined reference to `dccthread_exit'
 collect2: error: ld returned 1 exit status
-/usr/bin/ld: warning: alignment 1 of symbol `main' in /tmp/ccwT1hPV.o is smaller than 8 in dccthread.o
-/usr/bin/ld: /tmp/ccwT1hPV.o: in function `tsleep':
+/usr/bin/ld: /tmp/cc1OoT0w.o: in function `tsleep':
 /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test12.c:11: undefined reference to `dccthread_sleep'
 /usr/bin/ld: /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test12.c:13: undefined reference to `dccthread_exit'
-/usr/bin/ld: /tmp/ccwT1hPV.o: in function `test':
+/usr/bin/ld: /tmp/cc1OoT0w.o: in function `test':
 /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test12.c:30: undefined reference to `dccthread_wait'
 /usr/bin/ld: /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test12.c:33: undefined reference to `dccthread_exit'
 collect2: error: ld returned 1 exit status
-/usr/bin/ld: warning: alignment 1 of symbol `main' in /tmp/ccXEOxso.o is smaller than 8 in dccthread.o
-/usr/bin/ld: /tmp/ccXEOxso.o: in function `tsleep':
+/usr/bin/ld: /tmp/ccAezjpW.o: in function `tsleep':
 /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test12.c:11: undefined reference to `dccthread_sleep'
 /usr/bin/ld: /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test12.c:13: undefined reference to `dccthread_exit'
-/usr/bin/ld: /tmp/ccXEOxso.o: in function `test':
+/usr/bin/ld: /tmp/ccAezjpW.o: in function `test':
 /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test12.c:30: undefined reference to `dccthread_wait'
 /usr/bin/ld: /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test12.c:33: undefined reference to `dccthread_exit'
 collect2: error: ld returned 1 exit status
