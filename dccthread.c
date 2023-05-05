@@ -12,7 +12,7 @@ typedef struct dccthread
 {
     ucontext_t context;
     char name[DCCTHREAD_MAX_NAME_SIZE];
-    bool yelded;
+    bool yielded;
 
 } dccthread_t;
 
@@ -21,12 +21,16 @@ dccthread_t *main_thread;
 dccthread_t *current;
 struct dlist *ready;
 
-int compare(const void *t1, const void *t2, void *userdata){
-	dccthread_t* x = (dccthread_t*) t1;
-	dccthread_t* y = (dccthread_t*) t2;
-	return(x!=y);
+int compare(const void *t1, const void *t2, void *userdata)
+{
+    dccthread_t *x = (dccthread_t *)t1;
+    dccthread_t *y = (dccthread_t *)t2;
+    return (x != y);
 }
 
+/**
+interromper a thread 
+*/
 void schedule()
 {
     while (!dlist_empty(ready))
@@ -34,26 +38,27 @@ void schedule()
         for (int i = 0; i < ready->count; i++)
         {
             current = dlist_get_index(ready, i);
-            if (!current->yelded)
+            if (!current->yielded)
             {
                 swapcontext(&manager.context, &current->context);
-                if(!current->yelded) {
+                if (!current->yielded)
+                {
                     dlist_find_remove(ready, current, compare, NULL);
                 }
             }
             else
             {
-                current->yelded = false;   
-            }  
-        }        
+                current->yielded = false;
+            }
+        }
     }
 }
-// [p1, p3, p4]
 
 void dccthread_init(void (*func)(int), int param)
 {
     // criando a fila de prontos
     ready = dlist_create();
+
     // iniciando manager
     getcontext(&manager.context);
     manager.context.uc_stack.ss_sp = malloc(THREAD_STACK_SIZE);
@@ -75,11 +80,11 @@ dccthread_t *dccthread_create(const char *name, void (*func)(int), int param)
     newThread->context.uc_stack.ss_sp = malloc(THREAD_STACK_SIZE); // informando *ptr
     newThread->context.uc_stack.ss_size = THREAD_STACK_SIZE;       // informando stack size max
     newThread->context.uc_link = &manager.context;                 // informando thread de troca de contexto
-    newThread->yelded = false;
+    newThread->yielded = false;
     strcpy(newThread->name, name);
 
     makecontext(&newThread->context, (void *)func, 1, param); // assinalando uma função para a thread nova
-    
+
     dlist_push_right(ready, newThread);
 
     return newThread;
@@ -87,7 +92,7 @@ dccthread_t *dccthread_create(const char *name, void (*func)(int), int param)
 
 void dccthread_yield(void)
 {
-    current->yelded = true;
+    current->yielded = true;
     swapcontext(&current->context, &manager.context);
 }
 
@@ -99,4 +104,16 @@ dccthread_t *dccthread_self(void)
 const char *dccthread_name(dccthread_t *tid)
 {
     return tid->name;
+}
+
+void dccthread_exit(void)
+{
+    current->yielded = false;
+    swapcontext(&current->context, &manager.context);
+}
+
+void dccthread_wait(dccthread_t *tid)
+{
+    tid->context.uc_link = &current->context;
+    swapcontext(&current->context, &tid->context);
 }

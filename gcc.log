@@ -1,100 +1,12 @@
-/usr/bin/ld: /tmp/ccdHPbfX.o: in function `texit':
-/home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test7.c:9: undefined reference to `dccthread_exit'
-/usr/bin/ld: /tmp/ccdHPbfX.o: in function `test':
-/home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test7.c:24: undefined reference to `dccthread_wait'
-/usr/bin/ld: /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test7.c:27: undefined reference to `dccthread_exit'
-collect2: error: ld returned 1 exit status
-/usr/bin/ld: /tmp/cct4Ogmq.o: in function `texit':
-/home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test7.c:9: undefined reference to `dccthread_exit'
-/usr/bin/ld: /tmp/cct4Ogmq.o: in function `test':
-/home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test7.c:24: undefined reference to `dccthread_wait'
-/usr/bin/ld: /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test7.c:27: undefined reference to `dccthread_exit'
-collect2: error: ld returned 1 exit status
-/usr/bin/ld: /tmp/cc2FGmWS.o: in function `tyield':
-/home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test8.c:11: undefined reference to `dccthread_exit'
-/usr/bin/ld: /tmp/cc2FGmWS.o: in function `test':
-/home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test8.c:26: undefined reference to `dccthread_wait'
-/usr/bin/ld: /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test8.c:29: undefined reference to `dccthread_exit'
-collect2: error: ld returned 1 exit status
-/usr/bin/ld: /tmp/ccmIejol.o: in function `tyield':
-/home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test8.c:11: undefined reference to `dccthread_exit'
-/usr/bin/ld: /tmp/ccmIejol.o: in function `test':
-/home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test8.c:26: undefined reference to `dccthread_wait'
-/usr/bin/ld: /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test8.c:29: undefined reference to `dccthread_exit'
-collect2: error: ld returned 1 exit status
-/usr/bin/ld: /tmp/cczGIYpK.o: in function `tloop':
-/home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test9.c:13: undefined reference to `dccthread_exit'
-/usr/bin/ld: /tmp/cczGIYpK.o: in function `test':
-/home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test9.c:24: undefined reference to `dccthread_wait'
-/usr/bin/ld: /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test9.c:25: undefined reference to `dccthread_exit'
-collect2: error: ld returned 1 exit status
-/usr/bin/ld: /tmp/ccfenAAd.o: in function `tloop':
-/home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test9.c:13: undefined reference to `dccthread_exit'
-/usr/bin/ld: /tmp/ccfenAAd.o: in function `test':
-/home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test9.c:24: undefined reference to `dccthread_wait'
-/usr/bin/ld: /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test9.c:25: undefined reference to `dccthread_exit'
-collect2: error: ld returned 1 exit status
-/usr/bin/ld: /tmp/ccJy49jE.o: in function `tloop':
-/home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test9.c:13: undefined reference to `dccthread_exit'
-/usr/bin/ld: /tmp/ccJy49jE.o: in function `test':
-/home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test9.c:24: undefined reference to `dccthread_wait'
-/usr/bin/ld: /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test9.c:25: undefined reference to `dccthread_exit'
-collect2: error: ld returned 1 exit status
-/usr/bin/ld: /tmp/cc8TI2o9.o: in function `tloop':
-/home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test9.c:13: undefined reference to `dccthread_exit'
-/usr/bin/ld: /tmp/cc8TI2o9.o: in function `test':
-/home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test9.c:24: undefined reference to `dccthread_wait'
-/usr/bin/ld: /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test9.c:25: undefined reference to `dccthread_exit'
-collect2: error: ld returned 1 exit status
-/usr/bin/ld: /tmp/ccqmiEDx.o: in function `tloop':
-/home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test10.c:12: undefined reference to `dccthread_exit'
-/usr/bin/ld: /tmp/ccqmiEDx.o: in function `test':
-/home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test10.c:22: undefined reference to `dccthread_wait'
-/usr/bin/ld: /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test10.c:23: undefined reference to `dccthread_exit'
-collect2: error: ld returned 1 exit status
-/usr/bin/ld: /tmp/ccUCOZG4.o: in function `tloop':
-/home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test10.c:12: undefined reference to `dccthread_exit'
-/usr/bin/ld: /tmp/ccUCOZG4.o: in function `test':
-/home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test10.c:22: undefined reference to `dccthread_wait'
-/usr/bin/ld: /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test10.c:23: undefined reference to `dccthread_exit'
-collect2: error: ld returned 1 exit status
-/usr/bin/ld: /tmp/ccm7X5hG.o: in function `tloop':
-/home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test10.c:12: undefined reference to `dccthread_exit'
-/usr/bin/ld: /tmp/ccm7X5hG.o: in function `test':
-/home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test10.c:22: undefined reference to `dccthread_wait'
-/usr/bin/ld: /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test10.c:23: undefined reference to `dccthread_exit'
-collect2: error: ld returned 1 exit status
-/usr/bin/ld: /tmp/ccD6Kiqb.o: in function `tloop':
-/home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test10.c:12: undefined reference to `dccthread_exit'
-/usr/bin/ld: /tmp/ccD6Kiqb.o: in function `test':
-/home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test10.c:22: undefined reference to `dccthread_wait'
-/usr/bin/ld: /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test10.c:23: undefined reference to `dccthread_exit'
-collect2: error: ld returned 1 exit status
-/usr/bin/ld: /tmp/ccKx3PiE.o: in function `tsleep':
+/usr/bin/ld: /tmp/ccm3BQ7x.o: in function `tsleep':
 /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test11.c:11: undefined reference to `dccthread_sleep'
-/usr/bin/ld: /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test11.c:13: undefined reference to `dccthread_exit'
-/usr/bin/ld: /tmp/ccKx3PiE.o: in function `test':
-/home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test11.c:26: undefined reference to `dccthread_wait'
-/usr/bin/ld: /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test11.c:29: undefined reference to `dccthread_exit'
 collect2: error: ld returned 1 exit status
-/usr/bin/ld: /tmp/ccEDxoJ5.o: in function `tsleep':
+/usr/bin/ld: /tmp/ccxxwI3Y.o: in function `tsleep':
 /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test11.c:11: undefined reference to `dccthread_sleep'
-/usr/bin/ld: /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test11.c:13: undefined reference to `dccthread_exit'
-/usr/bin/ld: /tmp/ccEDxoJ5.o: in function `test':
-/home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test11.c:26: undefined reference to `dccthread_wait'
-/usr/bin/ld: /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test11.c:29: undefined reference to `dccthread_exit'
 collect2: error: ld returned 1 exit status
-/usr/bin/ld: /tmp/ccp0rQh7.o: in function `tsleep':
+/usr/bin/ld: /tmp/cc38AEQp.o: in function `tsleep':
 /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test12.c:11: undefined reference to `dccthread_sleep'
-/usr/bin/ld: /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test12.c:13: undefined reference to `dccthread_exit'
-/usr/bin/ld: /tmp/ccp0rQh7.o: in function `test':
-/home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test12.c:30: undefined reference to `dccthread_wait'
-/usr/bin/ld: /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test12.c:33: undefined reference to `dccthread_exit'
 collect2: error: ld returned 1 exit status
-/usr/bin/ld: /tmp/ccDr6XYB.o: in function `tsleep':
+/usr/bin/ld: /tmp/cc2oQ4tV.o: in function `tsleep':
 /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test12.c:11: undefined reference to `dccthread_sleep'
-/usr/bin/ld: /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test12.c:13: undefined reference to `dccthread_exit'
-/usr/bin/ld: /tmp/ccDr6XYB.o: in function `test':
-/home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test12.c:30: undefined reference to `dccthread_wait'
-/usr/bin/ld: /home/hrsf/Henrique/UFMG/6_Semestre/SO/Thread_Library/tests/test12.c:33: undefined reference to `dccthread_exit'
 collect2: error: ld returned 1 exit status
