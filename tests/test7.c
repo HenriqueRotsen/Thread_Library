@@ -25,7 +25,7 @@ void test(int cnt)
 		printf("%s continuing\n", dccthread_name(self));
 	}
 	dccthread_exit();
-}
+} 	
 
 int main(int argc, char **argv)
 {
