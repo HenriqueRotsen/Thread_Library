@@ -46,21 +46,18 @@ void schedule()
 
             if (current->wait != NULL && !current->wait->done)
             {
-                dccthread_t *aux = current;
-                current = current->wait;
-                swapcontext(&manager.context, &current->context);
+                dccthread_t *aux = current->wait;
 
-                if (!current->yielded)
+                swapcontext(&manager.context, &aux->context);
+
+                if (!aux->yielded)
                 {
-                    dccthread_t *finished = dlist_find_remove(ready, current, compare, NULL);
-
-                    if (finished != NULL)
-                        finished->done = true;
-
-                    aux->wait = NULL;
+                    dccthread_t *finished = dlist_find_remove(ready, aux, compare, NULL);
+                    if (finished != NULL) finished->done = true;
+                    current->wait = NULL;
                 }
-            }
 
+            }
             else if (!current->yielded)
             {
                 swapcontext(&manager.context, &current->context);
@@ -146,9 +143,8 @@ void dccthread_exit(void)
     }
     else
     {
-        current->yielded = true;
+        current->yielded = false;
         current = current->wait;
-        swapcontext(&current->context, &manager.context);
     }
 }
 
@@ -157,7 +153,6 @@ void dccthread_wait(dccthread_t *tid)
     if (!tid->done)
     {
         current->wait = tid;
-        tid->context.uc_link = &current->context;
         swapcontext(&current->context, &tid->context);
     }
 }
