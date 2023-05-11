@@ -1,0 +1,4 @@
+dccthread.c: In function ‘dccthread_init’:
+dccthread.c:90:19: warning: assignment to ‘__sighandler_t’ {aka ‘void (*)(int)’} from incompatible pointer type ‘void (*)(void)’ [-Wincompatible-pointer-types]
+   90 |     sa.sa_handler = dccthread_yield;
+      |                   ^

@@ -3,6 +3,8 @@
 
 #include <time.h>
 
+time_t timer;
+
 typedef struct dccthread dccthread_t;
 
 #define DCCTHREAD_MAX_NAME_SIZE 256

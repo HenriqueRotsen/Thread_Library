@@ -29,6 +29,12 @@ struct dlist *ready;
 
 sigset_t mask;
 
+timer_t timerid;
+
+struct sigevent sev;
+struct itimerspec its;
+struct sigaction sa;
+
 int compare(const void *t1, const void *t2, void *userdata)
 {
     dccthread_t *x = (dccthread_t *)t1;
@@ -53,10 +59,10 @@ void schedule()
                 if (!aux->yielded)
                 {
                     dccthread_t *finished = dlist_find_remove(ready, aux, compare, NULL);
-                    if (finished != NULL) finished->done = true;
+                    if (finished != NULL)
+                        finished->done = true;
                     current->wait = NULL;
                 }
-
             }
             else if (!current->yielded)
             {
@@ -65,7 +71,8 @@ void schedule()
                 if (!current->yielded)
                 {
                     dccthread_t *finished = dlist_find_remove(ready, current, compare, NULL);
-                    if (finished != NULL) finished->done = true;
+                    if (finished != NULL)
+                        finished->done = true;
                 }
             }
             else
@@ -74,10 +81,26 @@ void schedule()
             }
         }
     }
+    timer_delete(timerid);
 }
 
 void dccthread_init(void (*func)(int), int param)
 {
+    // Definiçoes do timer
+    sa.sa_handler = dccthread_yield;
+    sigemptyset(&sa.sa_mask);
+    sa.sa_flags = 0;
+    sigaction(SIGRTMIN, &sa, NULL);
+    sev.sigev_notify = SIGEV_SIGNAL;
+    sev.sigev_signo = SIGRTMIN;
+    sev.sigev_value.sival_ptr = &timerid;
+    timer_create(CLOCK_PROCESS_CPUTIME_ID, &sev, &timerid);
+
+    its.it_value.tv_sec = 0;
+    its.it_value.tv_nsec = 1000000; // 10ms
+    its.it_interval.tv_sec = 0;
+    its.it_interval.tv_nsec = 1000000; // 10ms
+
     // criando a fila de prontos
     ready = dlist_create();
 
@@ -93,6 +116,9 @@ void dccthread_init(void (*func)(int), int param)
     makecontext(&manager.context, (void *)schedule, 0, NULL);
 
     main_thread = dccthread_create("main", func, param);
+
+    timer_settime(timerid, 0, &its, NULL);
+
     schedule();
 
     exit(1);
@@ -157,8 +183,6 @@ void dccthread_wait(dccthread_t *tid)
     }
 }
 
-
 void dccthread_sleep(struct timespec ts)
 {
-
 }
