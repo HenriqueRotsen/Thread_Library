@@ -27,8 +27,6 @@ dccthread_t *main_thread;
 dccthread_t *current;
 struct dlist *ready;
 
-sigset_t mask;
-
 timer_t timerid;
 
 struct sigevent sev;
@@ -49,11 +47,13 @@ void schedule()
         for (int i = 0; i < ready->count; i++)
         {
             current = dlist_get_index(ready, i);
-
+            // [p1, p2, p3]  HEAP
+            // p1 -> p4
             if (current->wait != NULL && !current->wait->done)
             {
                 dccthread_t *aux = current->wait;
 
+                timer_settime(timerid, 0, &its, NULL);
                 swapcontext(&manager.context, &aux->context);
 
                 if (!aux->yielded)
@@ -66,6 +66,7 @@ void schedule()
             }
             else if (!current->yielded)
             {
+                timer_settime(timerid, 0, &its, NULL);
                 swapcontext(&manager.context, &current->context);
 
                 if (!current->yielded)
@@ -81,14 +82,15 @@ void schedule()
             }
         }
     }
-    timer_delete(timerid);
+    // timer_delete(timerid);
 }
 
 void dccthread_init(void (*func)(int), int param)
 {
     // Definiçoes do timer
-    sa.sa_handler = dccthread_yield;
+    sa.sa_handler = (void *)dccthread_yield;
     sigemptyset(&sa.sa_mask);
+    sigaddset(&sa.sa_mask, SIGRTMIN);
     sa.sa_flags = 0;
     sigaction(SIGRTMIN, &sa, NULL);
     sev.sigev_notify = SIGEV_SIGNAL;
@@ -97,9 +99,9 @@ void dccthread_init(void (*func)(int), int param)
     timer_create(CLOCK_PROCESS_CPUTIME_ID, &sev, &timerid);
 
     its.it_value.tv_sec = 0;
-    its.it_value.tv_nsec = 1000000; // 10ms
+    its.it_value.tv_nsec = 10000000; // 10ms
     its.it_interval.tv_sec = 0;
-    its.it_interval.tv_nsec = 1000000; // 10ms
+    its.it_interval.tv_nsec = 10000000; // 10ms
 
     // criando a fila de prontos
     ready = dlist_create();
@@ -116,8 +118,6 @@ void dccthread_init(void (*func)(int), int param)
     makecontext(&manager.context, (void *)schedule, 0, NULL);
 
     main_thread = dccthread_create("main", func, param);
-
-    timer_settime(timerid, 0, &its, NULL);
 
     schedule();
 
@@ -146,8 +146,10 @@ dccthread_t *dccthread_create(const char *name, void (*func)(int), int param)
 
 void dccthread_yield(void)
 {
+    sigprocmask(SIG_BLOCK,&sa.sa_mask,NULL);
     current->yielded = true;
     swapcontext(&current->context, &manager.context);
+    sigprocmask(SIG_BLOCK,&sa.sa_mask,NULL);
 }
 
 dccthread_t *dccthread_self(void)
@@ -162,6 +164,7 @@ const char *dccthread_name(dccthread_t *tid)
 
 void dccthread_exit(void)
 {
+    sigprocmask(SIG_BLOCK,&sa.sa_mask,NULL);
     if (current->wait == NULL)
     {
         current->yielded = false;
@@ -172,17 +175,21 @@ void dccthread_exit(void)
         current->yielded = false;
         current = current->wait;
     }
+    sigprocmask(SIG_BLOCK,&sa.sa_mask,NULL);
 }
 
 void dccthread_wait(dccthread_t *tid)
 {
+    sigprocmask(SIG_BLOCK,&sa.sa_mask,NULL);
     if (!tid->done)
     {
         current->wait = tid;
         swapcontext(&current->context, &tid->context);
     }
+    sigprocmask(SIG_BLOCK,&sa.sa_mask,NULL);
 }
 
 void dccthread_sleep(struct timespec ts)
 {
+    
 }
