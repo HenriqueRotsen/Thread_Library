@@ -19,6 +19,8 @@
 
 3. Referências bibliográficas
 
+
+
 4. Estruturas de dados
 
     4.1.  Descreva e justifique as estruturas de dados utilizadas para
@@ -39,21 +41,9 @@
     Além disso, é definida uma lista do tipo `dlist`, uma lista que contém as threads que ainda precisam ser executadas. Essa lista será gerenciada pela função `schedule()`, que funcionará como o escalonador. Ela irá, de forma rotativa, distribuir o tempo de processamento entre as funções que ainda não finalizaram sua execução.
 
 
-    Em cima dessas estruturas de dados, são definidas funções para manipular as threads em espaço de usuário. As funções são as seguintes:
-
-      **dccthread_init** : Função que inicializa a thread principal, chamada 'main', além de criar o manager, que é responsável pelo gerenciamento da execução. Na thread manager corre o scheduler, que gerencia a execução das demais threads. Além disso, nesta função são definidos detalhes do timer, que cronometra o tempo de CPU de cada uma das threads e a fila de pronto.
-
-      **dccthread_create** : Cria uma nova thread para executar uma determinada função, que é passada como parâmetro pelo usuário. A função é necessária para alocar a memória necessária pela thread e, sendo bem sucedida em inicializar a nova thread, retorna um ponteiro para a mesma.
-
-      **dccthread_yield** : Paraliza a execução de uma thread. Para isso, marca o atributo `yielded` como true, e troca o contexto de execução para o contexto da thread manager, que executa o schedueler, e, portanto, irá retomar a execução da próxima thread não yieldada da lista de pronto.
-
-      **dccthread_self** : Retorna um ponteiro para a thread em execução.
-
-      **dccthread_name** : Retorna uma lista de caracteres com o nome da thread passada por parâmetro.
-
-      **dccthread_wait** : Indica que uma thread deve esperar outra terminar de executar antes de seguir sua execução padrão.
-
-      **dccthread_exit** : Encerra a execução da thread atual, retirando-a da fila de pronto.
-
     4.2.  Descreva o mecanismo utilizado para sincronizar chamadas de
-        dccthread_yield e disparos do temporizador (parte 4).
+      dccthread_yield e disparos do temporizador (parte 4).
+
+    Para sincronizar chamadas de yield, e evitar condições de corrida, foi utilizada a `estrutura` sa, do tipo `sigaction`. Ela é responsável por descrever o que o sistema deve fazer quando um sinal for disparado. Além disso, na função dccthread_yield(), é feito o uso da função `sigprocmask()`, com o objetivo de controlar quais sinais deveriam ser bloqueados ou desbloqueados para um determinado trecho de código, visando evitar deadlocks. A máscara é definida tanto na função `dccthread_yield` quanto na função `dccthread_exit`.
+
+    
