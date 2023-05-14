@@ -21,23 +21,37 @@
 
 4. Estruturas de dados
 
-  4.1.  Descreva e justifique as estruturas de dados utilizadas para
-  gerência das threads de espaço do usuário (partes 1, 2 e 5).
+    4.1.  Descreva e justifique as estruturas de dados utilizadas para
+    gerência das threads de espaço do usuário (partes 1, 2 e 5).
+    
     Para o gerenciamento das thhreads em espaço de usuário, foram utilizadas as seguintees estruturas:
 
-      **dccthread_t**: tipo de dados que define uma thread. Todas as threads do programa são do tipo dccthread_t. Um objeto do tipo dccthread_t posui os seguintes atributos:
+    **dccthread_t**: tipo de dados que define uma thread. Todas as threads do programa são do tipo dccthread_t. Um objeto do tipo dccthread_t possui os seguintes atributos:
 
-      * char name: Nome da thread a ser executada
+    * char name: Nome da thread a ser executada
 
-      * bool yielded: Indicador se a thread corrente teve sua execução suspensa através do método _yield
+    * bool yielded: Indicador se a thread corrente teve sua execução suspensa através do método `dccthread_yield`
 
-      * dccthread_t *wait: Ponteiro para uma thread que a cuja thread corrente espera a finalização da execução
+    * dccthread_t *wait: Ponteiro para uma thread que a cuja thread corrente espera a finalização da execução
 
-      * ucontext_t context: Contexto de execução da thread corrente.
+    * ucontext_t context: Contexto de execução da thread corrente.
+ 
+    Além disso, é definida uma lista do tipo `dlist`, uma lista que contém as threads que ainda precisam ser executadas. Essa lista será gerenciada pela função `schedule()`, que funcionará como o escalonador. Ela irá, de forma rotativa, distribuir o tempo de processamento entre as funções que ainda não finalizaram sua execução.
 
-      Em cima dessas estruturas de dados, são definidas funções
 
-      **dccthread_init** : 
+    Em cima dessas estruturas de dados, são definidas funções para manipular as threads em espaço de usuário. As funções são as seguintes:
 
-  4.2.  Descreva o mecanismo utilizado para sincronizar chamadas de
-      dccthread_yield e disparos do temporizador (parte 4).
+      **dccthread_init** : Função que inicializa a thread principal, chamada 'main', além de criar o manager, que é responsável pelo gerenciamento da execução. Na thread manager corre o scheduler, que gerencia a execução das demais threads. Além disso, nesta função são definidos detalhes do timer, que cronometra o tempo de CPU de cada uma das threads e a fila de pronto.
+
+      **dccthread_create** : Cria uma nova thread para executar uma determinada função, que é passada como parâmetro pelo usuário. A função é necessária para alocar a memória necessária pela thread e, sendo bem sucedida em inicializar a nova thread, retorna um ponteiro para a mesma.
+
+      **dccthread_yield** : Paraliza a execução de uma thread. Para isso, marca o atributo `yielded` como true, e troca o contexto de execução para o contexto da thread manager, que executa o schedueler, e, portanto, irá retomar a execução da próxima thread não yieldada da lista de pronto.
+
+      **dccthread_self** : Retorna um ponteiro para a thread em execução.
+
+      **dccthread_name** : Retorna uma lista de caracteres com o nome da thread passada por parâmetro.
+
+      **dccthread_wait**
+
+    4.2.  Descreva o mecanismo utilizado para sincronizar chamadas de
+        dccthread_yield e disparos do temporizador (parte 4).
