@@ -120,7 +120,7 @@ void dccthread_init(void (*func)(int), int param)
 
 dccthread_t *dccthread_create(const char *name, void (*func)(int), int param)
 {
-    sigprocmask(SIG_BLOCK, &sa.sa_mask, NULL);
+    //sigprocmask(SIG_BLOCK, &sa.sa_mask, NULL);
     dccthread_t *newThread = malloc(sizeof(dccthread_t));
 
     getcontext(&newThread->context); // inicializando ucontext
@@ -135,7 +135,7 @@ dccthread_t *dccthread_create(const char *name, void (*func)(int), int param)
 
     dlist_push_right(ready, newThread);
 
-    sigprocmask(SIG_UNBLOCK, &sa.sa_mask, NULL);
+    //sigprocmask(SIG_UNBLOCK, &sa.sa_mask, NULL);
 
     return newThread;
 }
@@ -164,9 +164,7 @@ void dccthread_exit(void)
 {
     sigprocmask(SIG_BLOCK, &sa.sa_mask, NULL);
     
-    current->yielded = false;
-    current->wait = NULL;
-    swapcontext(&current->context, &manager.context);
+    dlist_find_remove(ready, current, compare, NULL);
 
     sigprocmask(SIG_UNBLOCK, &sa.sa_mask, NULL);
 }
@@ -177,7 +175,7 @@ void dccthread_wait(dccthread_t *tid)
     if (isIn(tid, ready))
     {
         current->wait = tid;
-        current->yielded = true;
+        tid->context.uc_link = &current->context;
         swapcontext(&current->context, &manager.context);
     }
     else //TID ja terminou
