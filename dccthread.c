@@ -120,7 +120,7 @@ void dccthread_init(void (*func)(int), int param)
 
 dccthread_t *dccthread_create(const char *name, void (*func)(int), int param)
 {
-    //sigprocmask(SIG_BLOCK, &sa.sa_mask, NULL);
+    // sigprocmask(SIG_BLOCK, &sa.sa_mask, NULL);
     dccthread_t *newThread = malloc(sizeof(dccthread_t));
 
     getcontext(&newThread->context); // inicializando ucontext
@@ -135,7 +135,7 @@ dccthread_t *dccthread_create(const char *name, void (*func)(int), int param)
 
     dlist_push_right(ready, newThread);
 
-    //sigprocmask(SIG_UNBLOCK, &sa.sa_mask, NULL);
+    // sigprocmask(SIG_UNBLOCK, &sa.sa_mask, NULL);
 
     return newThread;
 }
@@ -163,7 +163,7 @@ const char *dccthread_name(dccthread_t *tid)
 void dccthread_exit(void)
 {
     sigprocmask(SIG_BLOCK, &sa.sa_mask, NULL);
-    
+
     dlist_find_remove(ready, current, compare, NULL);
 
     sigprocmask(SIG_UNBLOCK, &sa.sa_mask, NULL);
@@ -178,14 +178,47 @@ void dccthread_wait(dccthread_t *tid)
         tid->context.uc_link = &current->context;
         swapcontext(&current->context, &manager.context);
     }
-    else //TID ja terminou
+    else // TID ja terminou
     {
         current->yielded = false;
         current->wait = NULL;
-    }   
+    }
     sigprocmask(SIG_UNBLOCK, &sa.sa_mask, NULL);
 }
 
 void dccthread_sleep(struct timespec ts)
 {
+    struct timespec tempo_em_espera;
+    struct timespec tempo_atual;
+    struct timespec inicio_da_espera;
+
+    clock_gettime(CLOCK_REALTIME, &inicio_da_espera);
+
+    dccthread_yield();
+
+    while (true)
+    {
+        clock_gettime(CLOCK_REALTIME, &tempo_atual);
+
+        // Calculate how much time the process spend slepping
+        if ((tempo_atual.tv_nsec - inicio_da_espera.tv_nsec) < 0)
+        {
+            tempo_em_espera.tv_sec = tempo_atual.tv_sec - inicio_da_espera.tv_sec - 1;
+            tempo_em_espera.tv_nsec = 1000000000 + tempo_atual.tv_nsec - inicio_da_espera.tv_nsec;
+        }
+        else
+        {
+            tempo_em_espera.tv_sec = tempo_atual.tv_sec - inicio_da_espera.tv_sec;
+            tempo_em_espera.tv_nsec = tempo_atual.tv_nsec - inicio_da_espera.tv_nsec;
+        }
+
+        if (tempo_em_espera.tv_sec > ts.tv_sec)
+        {
+            break;
+        }
+        else
+        {
+            dccthread_yield();
+        }
+    }
 }
