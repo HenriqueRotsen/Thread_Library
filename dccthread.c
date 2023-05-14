@@ -39,18 +39,17 @@ int compare(const void *t1, const void *t2, void *userdata)
     return (x != y);
 }
 
-int isIn(dccthread_t *a, struct dlist *lista)
+// Testa se uma thread está na fila de prontos
+int isIn(dccthread_t *x, struct dlist *ready)
 {
-    if (lista == NULL)
-        return 0;
-
-    for (struct dnode *curr = lista->head; curr != NULL; curr = curr->next)
+    int resp = 0;
+    for (struct dnode *curr = ready->head; curr != NULL; curr = curr->next)
     {
         dccthread_t *p = curr->data;
-        if (p == a)
-            return 1;
+        if (p == x)
+            resp = 1;
     };
-    return 0;
+    return resp;
 }
 
 void schedule()
@@ -61,7 +60,7 @@ void schedule()
         {
             current = dlist_get_index(ready, i);
 
-            if (!current->yielded && !isIn(current->wait, ready))
+            if (!current->yielded && !isIn(current->wait, ready))// Se o processo pode rodar
             {
                 timer_settime(timerid, 0, &its, NULL);
                 swapcontext(&manager.context, &current->context);
@@ -98,10 +97,10 @@ void dccthread_init(void (*func)(int), int param)
     its.it_interval.tv_sec = 0;
     its.it_interval.tv_nsec = 10000000; // 10ms
 
-    // criando a fila de prontos
+    // Criando a fila de prontos
     ready = dlist_create();
 
-    // iniciando manager
+    // Iniciando manager
     getcontext(&manager.context);
     manager.context.uc_stack.ss_sp = malloc(THREAD_STACK_SIZE);
     manager.context.uc_stack.ss_size = THREAD_STACK_SIZE;
@@ -111,6 +110,7 @@ void dccthread_init(void (*func)(int), int param)
     strcpy(manager.name, "manager");
     makecontext(&manager.context, (void *)schedule, 0, NULL);
 
+    // Criando a main
     main_thread = dccthread_create("main", func, param);
 
     schedule();
@@ -120,7 +120,6 @@ void dccthread_init(void (*func)(int), int param)
 
 dccthread_t *dccthread_create(const char *name, void (*func)(int), int param)
 {
-    // sigprocmask(SIG_BLOCK, &sa.sa_mask, NULL);
     dccthread_t *newThread = malloc(sizeof(dccthread_t));
 
     getcontext(&newThread->context); // inicializando ucontext
@@ -134,8 +133,6 @@ dccthread_t *dccthread_create(const char *name, void (*func)(int), int param)
     makecontext(&newThread->context, (void *)func, 1, param); // assinalando uma função para a thread nova
 
     dlist_push_right(ready, newThread);
-
-    // sigprocmask(SIG_UNBLOCK, &sa.sa_mask, NULL);
 
     return newThread;
 }
@@ -200,7 +197,6 @@ void dccthread_sleep(struct timespec ts)
     {
         clock_gettime(CLOCK_REALTIME, &tempo_atual);
 
-        // Calculate how much time the process spend slepping
         if ((tempo_atual.tv_nsec - inicio_da_espera.tv_nsec) < 0)
         {
             tempo_em_espera.tv_sec = tempo_atual.tv_sec - inicio_da_espera.tv_sec - 1;
