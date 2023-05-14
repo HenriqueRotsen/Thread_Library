@@ -25,7 +25,7 @@
 
     4.1.  Descreva e justifique as estruturas de dados utilizadas para
     gerência das threads de espaço do usuário (partes 1, 2 e 5).
-    
+
     Para o gerenciamento das thhreads em espaço de usuário, foram utilizadas as seguintees estruturas:
 
     **dccthread_t**: tipo de dados que define uma thread. Todas as threads do programa são do tipo dccthread_t. Um objeto do tipo dccthread_t possui os seguintes atributos:
@@ -37,13 +37,12 @@
     * dccthread_t *wait: Ponteiro para uma thread que a cuja thread corrente espera a finalização da execução
 
     * ucontext_t context: Contexto de execução da thread corrente.
- 
-    Além disso, é definida uma lista do tipo `dlist`, uma lista que contém as threads que ainda precisam ser executadas. Essa lista será gerenciada pela função `schedule()`, que funcionará como o escalonador. Ela irá, de forma rotativa, distribuir o tempo de processamento entre as funções que ainda não finalizaram sua execução.
 
+    Além disso, é definida uma lista do tipo `dlist`, uma lista que contém as threads que ainda precisam ser executadas. Essa lista será gerenciada pela função `schedule()`, que funcionará como o escalonador. Ela irá, de forma rotativa, distribuir o tempo de processamento entre as funções que ainda não finalizaram sua execução.
 
     4.2.  Descreva o mecanismo utilizado para sincronizar chamadas de
       dccthread_yield e disparos do temporizador (parte 4).
 
-    Para sincronizar chamadas de yield, e evitar condições de corrida, foi utilizada a `estrutura` sa, do tipo `sigaction`. Ela é responsável por descrever o que o sistema deve fazer quando um sinal for disparado. Além disso, na função dccthread_yield(), é feito o uso da função `sigprocmask()`, com o objetivo de controlar quais sinais deveriam ser bloqueados ou desbloqueados para um determinado trecho de código, visando evitar deadlocks. A máscara é definida tanto na função `dccthread_yield` quanto na função `dccthread_exit`.
+    Para sincronizar chamadas de yield, e evitar condições de corrida, foi utilizada a estrutura sa, do tipo `sigaction`. Ela é responsável por descrever o que o sistema deve fazer quando um sinal for disparado. Além disso, na função dccthread_yield(), é feito o uso da função `sigprocmask()`, com o objetivo de controlar quais sinais deveriam ser bloqueados ou desbloqueados para um determinado trecho de código, visando evitar deadlocks. A máscara é definida tanto na função `dccthread_yield` quanto na função `dccthread_exit`.
 
-    
+    Além disso, foram utilizados diparos de temporizador, através de uma variável do tipo `timer_t`, que definiam restrição de tempo de CPU para a execução das threads. Com isso, cada função tinha um tempo de execução de 10 milissegundos, definidas no momento de inicialização da biblioteca. Isso impede a ocorrência de inanição, onde um processo roda eternamente, fazendo com que os demias não tenham tempo adequado de processamento
