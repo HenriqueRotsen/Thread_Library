@@ -51,7 +51,9 @@
 
       **dccthread_name** : Retorna uma lista de caracteres com o nome da thread passada por parâmetro.
 
-      **dccthread_wait**
+      **dccthread_wait** : Indica que uma thread deve esperar outra terminar de executar antes de seguir sua execução padrão.
+
+      **dccthread_exit** : Encerra a execução da thread atual, retirando-a da fila de pronto.
 
     4.2.  Descreva o mecanismo utilizado para sincronizar chamadas de
         dccthread_yield e disparos do temporizador (parte 4).
