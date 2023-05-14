@@ -147,8 +147,10 @@ dccthread_t *dccthread_create(const char *name, void (*func)(int), int param)
 void dccthread_yield(void)
 {
     sigprocmask(SIG_BLOCK,&sa.sa_mask,NULL);
+
     current->yielded = true;
     swapcontext(&current->context, &manager.context);
+    
     sigprocmask(SIG_BLOCK,&sa.sa_mask,NULL);
 }
 
